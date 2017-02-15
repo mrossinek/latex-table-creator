@@ -172,4 +172,5 @@ print("Saving table.tex\n")
 tbl.close()
 
 print("Done!\n")
-print("To compile your newly created table run  make table \n")
+print("To compile your newly created table run  make make_table.mk \n")
+
