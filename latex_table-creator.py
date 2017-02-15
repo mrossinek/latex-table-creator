@@ -77,16 +77,35 @@ row_current=0
 for line in user_file:
   data[row_current]=line.split(' ')
   row_current=row_current+1
+user_file.close()
 
+# check for user config file
+config = input('Please provide the name of your CONFIG file or press ENTER \n')
 
-# get user specific customization
-caption = input('Please provide the optional caption of the table below: [Skip with ENTER] \n')
-center = input('Would you like the table to be centered? [y/n] \n')
-align = input('How shall the table content by aligned? [l/c/r] \n')
-header = input('Do you have a header row? [y/n] \n')
-col1_align = input('How shall the first column be aligned? [l/c/r] [ENTER=same] \n')
-horizs = input('Would you like to have horizontal bars in your table? [y/n] \n')
-vertics = input('Would you like to have vertical bars in your table? [y/n] \n')
+if (config!=""):
+  configs=["" for x in range(7)]
+  config_current=0
+  config_file = open(config,'r')
+  for line in config_file:
+    configs[config_current]=line
+    config_current=config_current+1
+  config_file.close()
+  caption = configs[0]
+  center = configs[1]
+  align = configs[2]
+  header = configs[3]
+  col1_align = configs[4]
+  horizs = configs[5]
+  vertics = configs[6]
+else:
+  # get user specific customization
+  caption = input('Please provide the optional caption of the table below: [Skip with ENTER] \n')
+  center = input('Would you like the table to be centered? [y/n] \n')
+  align = input('How shall the table content by aligned? [l/c/r] \n')
+  header = input('Do you have a header row? [y/n] \n')
+  col1_align = input('How shall the first column be aligned? [l/c/r] [ENTER=same] \n')
+  horizs = input('Would you like to have horizontal bars in your table? [y/n] \n')
+  vertics = input('Would you like to have vertical bars in your table? [y/n] \n')
 
 # definitions
 lines=['\\toprule \n','\\midrule \n','\\bottomrule \n']
@@ -172,5 +191,5 @@ print("Saving table.tex\n")
 tbl.close()
 
 print("Done!\n")
-print("To compile your newly created table run  make make_table.mk \n")
+print("To compile your newly created table run  make -f make_table.mk \n")
 
