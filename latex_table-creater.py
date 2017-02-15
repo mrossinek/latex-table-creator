@@ -94,6 +94,7 @@ finish = '''\
 '''
 
 # piece it together
+print("Writing table into table.tex ...\n")
 tbl = open('table.tex','w')
 
 if (center=='y'):
@@ -167,5 +168,8 @@ for i in range(rows):
 tbl.write(lines[2])
 tbl.write(finish)
 
+print("Saving table.tex\n")
 tbl.close()
 
+print("Done!\n")
+print("To compile your newly created table run  make table \n")
